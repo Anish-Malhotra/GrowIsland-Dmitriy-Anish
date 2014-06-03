@@ -1,8 +1,8 @@
-Multitask
+Grow Island
 	Dmitriy Kagno
 	Anish Malhotra
 
-Get as high a score as possible without losing one's sanity
-Different minigames have different key inputs which will be explained during gameplay
+A X by X grid where each tile has a different type of resource. The objective is to survive as long as possible without dying to random disasters.
+
 
 
