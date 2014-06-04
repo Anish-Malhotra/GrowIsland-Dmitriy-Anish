@@ -1,0 +1,17 @@
+* mechanics 
+  
+
+* Tiles
+  12 by 12 grid plausibly.
+  barren - nothing/turns to grass.
+  corruption - spreads indefinetly unless faith/
+  ice - barren, but with water/time limit
+  snow - Tree -> grass, Grass -> snow, Desert -> Grass, water -> ice. 
+  
+  
+
+* Disasters
+  base -
+  Blizzard - creates snow
+  Famine - food below a certain level, 
+  
