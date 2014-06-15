@@ -1,10 +1,13 @@
 package com.anish_dmitriy.growisland.screens;
 
+import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 
 import com.anish_dmitriy.growisland.Constants;
 import com.anish_dmitriy.growisland.tween.SpriteAccessor;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -40,8 +43,11 @@ public class Splash implements Screen {
 		Tween.registerAccessor(Sprite.class, new SpriteAccessor());
 		splash = new Sprite(new Texture("img/splash.png"));
 		Tween.set(splash, Constants.ALPHA).target(0).start(manager);
-		Tween.to(splash, Constants.ALPHA, 2).target(1).start(manager);
-		Tween.to(splash, Constants.ALPHA, 2).target(0).delay(2).start(manager);
+		Tween.to(splash, Constants.ALPHA, 2).target(1).repeatYoyo(1,2).setCallback(new TweenCallback() {
+			public void onEvent(int type, BaseTween<?> source){
+				((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu());
+			}
+		}).start(manager);
 	}
 
 	@Override
