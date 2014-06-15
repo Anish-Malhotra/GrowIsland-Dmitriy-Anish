@@ -4,20 +4,16 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
@@ -31,7 +27,6 @@ public class MainMenu implements Screen {
 	private Skin skin;
 	private Table table;
 	private TextButton startButton, exitButton;
-	private BitmapFont white;
 	private Label heading;
 	private Music music;
 	
@@ -70,31 +65,22 @@ public class MainMenu implements Screen {
 		Gdx.input.setInputProcessor(stage);
 		
 		atlas = new TextureAtlas(Gdx.files.internal("ui/button.pack"));
-		skin = new Skin(atlas);
+		skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
+		heading = new Label("", skin);
 		
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
-		white = new BitmapFont(Gdx.files.internal("font/outline.fnt"),false);
-		
-		TextButtonStyle tbstyle = new TextButtonStyle();
-		tbstyle.up = skin.getDrawable("button.up");
-		tbstyle.down = skin.getDrawable("button.down");
-		tbstyle.pressedOffsetX = 1;
-		tbstyle.pressedOffsetY = -1;
-		tbstyle.font = white;
-		tbstyle.fontColor = Color.WHITE;
-		
-		startButton = new TextButton("START", tbstyle);
+		startButton = new TextButton("START", skin);
 		startButton.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				((Game) Gdx.app.getApplicationListener()).setScreen(new Round());
+				((Game) Gdx.app.getApplicationListener()).setScreen(new LevelSelect());
 			}
 		});
 		startButton.pad(20);
 		
-		exitButton = new TextButton("EXIT", tbstyle);
+		exitButton = new TextButton("EXIT", skin);
 		exitButton.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
@@ -103,9 +89,7 @@ public class MainMenu implements Screen {
 		});
 		exitButton.pad(20);
 		
-		LabelStyle headingStyle = new LabelStyle(white,Color.WHITE);
 		
-		heading = new Label("",headingStyle);
 		
 		//putting it all together
 		table.setBackground(drawer);
@@ -141,7 +125,6 @@ public class MainMenu implements Screen {
 		stage.dispose();
 		atlas.dispose();
 		skin.dispose();
-		white.dispose();
 		background.dispose();
 	}
 
