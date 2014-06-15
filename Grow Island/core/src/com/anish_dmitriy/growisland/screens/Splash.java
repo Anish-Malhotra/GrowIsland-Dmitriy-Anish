@@ -43,7 +43,7 @@ public class Splash implements Screen {
 		Tween.registerAccessor(Sprite.class, new SpriteAccessor());
 		splash = new Sprite(new Texture("img/splash.png"));
 		Tween.set(splash, Constants.ALPHA).target(0).start(manager);
-		Tween.to(splash, Constants.ALPHA, 2).target(1).repeatYoyo(1,2).setCallback(new TweenCallback() {
+		Tween.to(splash, Constants.ALPHA, 2).target(1).repeatYoyo(1,0.5f).setCallback(new TweenCallback() {
 			public void onEvent(int type, BaseTween<?> source){
 				((Game) Gdx.app.getApplicationListener()).setScreen(new MainMenu());
 			}
