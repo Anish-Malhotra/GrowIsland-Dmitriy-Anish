@@ -3,6 +3,7 @@ package com.anish_dmitriy.growisland.screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -32,6 +33,7 @@ public class MainMenu implements Screen {
 	private TextButton startButton, exitButton;
 	private BitmapFont white;
 	private Label heading;
+	private Music music;
 	
 	@Override
 	public void render(float delta) {
@@ -46,11 +48,19 @@ public class MainMenu implements Screen {
 
 	@Override
 	public void resize(int width, int height) {
-
+		/*stage.getViewport().update(width,height,true);
+		table.invalidateHierarchy();
+		table.setSize(width, height);*/
+		
+		//doesn't work right
 	}
 
 	@Override
 	public void show() {
+		music = Gdx.audio.newMusic(Gdx.files.internal("audio/DuckTales Music (NES) - The Moon Theme.mp3"));
+		music.setLooping(true);
+		music.play();
+		
 		background = new Texture("img/truebg.png");
 		bgloader = new TextureRegion(background);
 		drawer = new TextureRegionDrawable(bgloader);
