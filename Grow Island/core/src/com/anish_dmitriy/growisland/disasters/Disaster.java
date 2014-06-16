@@ -24,9 +24,19 @@ public class Disaster {
 	
 	Random r = new Random();
 	PriorityQueue<Disaster> queue = new PriorityQueue<Disaster>();
+	
 	public void Generate(){
-		queue.add(all[r.nextInt(all.length - 1)]);
-		
+		queue.add(all[r.nextInt(all.length - 1)]);	
+	}
+	
+	//Skill : Identify
+	public Disaster Identify(){
+		return queue.peek();
+	}
+	
+	//Skill: Cancel
+	public void Cancel(){
+		queue.poll();
 	}
 	
 	
@@ -39,8 +49,8 @@ public class Disaster {
 			} else {
 				l.GameGrid[randomx][randomy].structure.downGrade();
 			}
-			
 		}
+		
 	}
 	
 	

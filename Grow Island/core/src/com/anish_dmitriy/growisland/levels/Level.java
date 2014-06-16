@@ -14,6 +14,7 @@ public class Level {
 	Tiles[3] = new Water();
 	Tiles[4] = new Desert();
 	Tiles[5] = new Plains();
+	
 	public Tile[][] GameGrid;
 	
 	

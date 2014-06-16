@@ -17,6 +17,31 @@ public class Tile{
     	type = s; 
     }
     
+    //Skill: Reforest, turns plains into forests.
+    public void Reforest(){
+    	type = "Forest";
+    }
+    
+    //Skill: Irrigate, turns plains into water
+    public void Irrigate(){
+    	type = "Water";
+    }
+    
+    //Skill: Deforest, turns forests into plains.
+    public void Deforest(){
+    	type = "Plains";
+    }
+   
+    //Skill: Culture turns desert into plains
+    public void Culture(){
+    	type = "Plains";
+    }
+    
+    //Skill: Drain turns water into plains
+    public void Drain(){
+    	type = "Plains";
+    }
+    
     /*you should limit what could be built on what.
     *as it stands any structure can be built anywhere.
     *Plains: City/Factory/School/Farm

@@ -19,13 +19,15 @@ public class Minor extends Disaster{
 				l.GameGrid[i][random] = l.GameGrid[i - 1][random]; 
 			}
 			Tile t = l.Tiles[r.nextInt(5)];
-			l.GameGrid[0][random] = t; 
+			l.GameGrid[0][random] = t;
+			side = false;
 		} else {
 			for (int i = l.GameGrid.length - 1;i > 0;i--){
 				l.GameGrid[random][i] = l.GameGrid[random][i - 1]; 
 			}
 			Tile t = l.Tiles[r.nextInt(5)];
 			l.GameGrid[random][0] = t; 
+			side = true;
 		}
 	}
 }

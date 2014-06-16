@@ -23,6 +23,7 @@ public class Temple extends Building{
 	//don't let this be an option for the user.
 	public void downGrade(){
 		level -= level;
-		Constants.CITIES -= 1;
+		Constants.MAGIC -= 30;
+		Constants.TEMPLES -= 1;
 	}
 }

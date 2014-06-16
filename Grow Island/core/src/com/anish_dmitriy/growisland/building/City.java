@@ -13,6 +13,9 @@ public class City extends Building{
 	public void upGrade(){
 		level += 1;
 		Constants.CITIES += 1;
+		if (level == 1){
+			Constants.POPULATIONs = 3;
+		}
 		if (level == 2){
 			Constants.POPULATIONs = 9;
 		}

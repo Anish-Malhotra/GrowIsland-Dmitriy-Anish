@@ -20,8 +20,9 @@ public class School extends Building{
 	}
 	
 	//don't let this be an option for the user.
-		public void downGrade(){
-			level -= level;
-			Constants.CITIES -= 1;
-		}
+	public void downGrade(){
+		level -= level;
+		Constants.SCHOOLS -= 1;
+		Constants.KNOWLEDGE -= 30;
+	}
 }

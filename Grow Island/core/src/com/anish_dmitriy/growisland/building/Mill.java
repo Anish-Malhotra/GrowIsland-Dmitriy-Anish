@@ -15,13 +15,14 @@ public class Mill extends Building{
 	
 	public void upGrade(){
 		level += 1;
-		Constants.WOODs += 30;
+		Constants.WOODs += 20;
 		Constants.MILLS += 1;
 	}
 	
 	//don't let this be an option for the user.
-		public void downGrade(){
-			level -= level;
-			Constants.CITIES -= 1;
-		}
+	public void downGrade(){
+		level -= level;
+		Constants.MILLS -= 1;
+		Constants.WOOD -= 20;
+	}
 }
