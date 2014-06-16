@@ -7,17 +7,18 @@ import com.anish_dmitriy.growisland.levels.*;
 import com.anish_dmitriy.growisland.tiles.*;
 
 public class Disaster {
-	Disaster[] all = new Disaster[6];
-	all[0] = new Earthquake();
-	all[1] = new Flood();
-	all[2] = new Major();
-	all[3] = new Minor();
-	all[4] = new Nature();
-	all[5] = new Wildfire();
 	
+	Disaster[] all;
 	Tile result;
 	
 	public Disaster(){
+		all = new Disaster[6];
+		all[0] = new Earthquake();
+		all[1] = new Flood();
+		all[2] = new Major();
+		all[3] = new Minor();
+		all[4] = new Nature();
+		all[5] = new Wildfire();
 		result = null;
 		
 	}
