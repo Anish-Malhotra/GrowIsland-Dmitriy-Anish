@@ -1,10 +1,8 @@
 package com.anish_dmitriy.growisland.levels;
 
 import com.anish_dmitriy.growisland.Constants;
-import com.anish_dmitriy.growisland.tiles.Forest;
-import com.anish_dmitriy.growisland.tiles.Plains;
-import com.anish_dmitriy.growisland.tiles.Tile;
-import com.anish_dmitriy.growisland.tiles.Transparent;
+import com.anish_dmitriy.growisland.tiles.*;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -22,11 +20,12 @@ import com.badlogic.gdx.math.collision.Ray;
 public class LevelOne extends Level implements Screen,InputProcessor{
 	private SpriteBatch batch;
 	private OrthographicCamera cam;
-	private Texture background;
+	//private Texture background;
 	private Tile lastSelectedTile = null;
 	final Plane xzPlane = new Plane(new Vector3(0, 1, 0), 0);
 	final Vector3 intersection = new Vector3();
 	private final Matrix4 matrix = new Matrix4();
+	private final Sprite[][] sprites = new Sprite[10][10];
 	
 	public LevelOne(){
 			super();
@@ -45,34 +44,82 @@ public class LevelOne extends Level implements Screen,InputProcessor{
  
 		for(int z = 0; z < 10; z++) {
 			for(int x = 0; x < 10; x++) {
-				sprites[x][z] = new Sprite(texture);
-				sprites[x][z].setPosition(x,z);
-				sprites[x][z].setSize(1, 1);
+				GameGrid[x][z] = new Desert();
+				/*GameGrid[x][z].setPosition(x,z);
+				GameGrid[x][z].setSize(1, 1);*/
 			}
 		} 
-		
-		for (int row = 0;row < GameGrid.length;row++){
-			for (int col = 0;col < GameGrid[0].length;col++){
-				GameGrid[row][col] = new Transparent();
-			}
-		}
-		
 		GameGrid[9][2] = new Plains();
+		GameGrid[9][2].setPosition(9,2);
+		GameGrid[9][2].setSize(1, 1);
+		
 		GameGrid[6][0] = new Forest();
+		GameGrid[6][0].setPosition(6,0);
+		GameGrid[6][0].setSize(1, 1);
+		
 		GameGrid[6][1] = new Forest();
+		GameGrid[6][1].setPosition(6,1);
+		GameGrid[6][1].setSize(1, 1);
+		
 		GameGrid[6][2] = new Forest();
+		GameGrid[6][2].setPosition(6,2);
+		GameGrid[6][2].setSize(1, 1);
+		
 		GameGrid[6][3] = new Forest();
+		GameGrid[6][3].setPosition(6,3);
+		GameGrid[6][3].setSize(1, 1);
+		
 		GameGrid[7][3] = new Forest();
+		GameGrid[7][3].setPosition(7,3);
+		GameGrid[7][3].setSize(1, 1);
+		
 		GameGrid[8][3] = new Forest();
+		GameGrid[8][3].setPosition(8,3);
+		GameGrid[8][3].setSize(1, 1);
+		
 		GameGrid[9][3] = new Forest();
+		GameGrid[9][3].setPosition(9,3);
+		GameGrid[9][3].setSize(1, 1);
+		
 		GameGrid[7][0] = new Plains();
+		GameGrid[7][0].setPosition(7,0);
+		GameGrid[7][0].setSize(1, 1);
+		
 		GameGrid[7][1] = new Plains();
+		GameGrid[7][1].setPosition(7,1);
+		GameGrid[7][1].setSize(1, 1);
+		
 		GameGrid[7][2] = new Plains();
+		GameGrid[7][2].setPosition(7,2);
+		GameGrid[7][2].setSize(1, 1);
+		
 		GameGrid[8][0] = new Plains();
+		GameGrid[8][0].setPosition(8,0);
+		GameGrid[8][0].setSize(1, 1);
+		
 		GameGrid[8][1] = new Plains();
+		GameGrid[8][1].setPosition(8,1);
+		GameGrid[8][1].setSize(1, 1);
+		
 		GameGrid[8][2] = new Plains();
+		GameGrid[8][2].setPosition(8,2);
+		GameGrid[8][2].setSize(1, 1);
+		
 		GameGrid[9][0] = new Plains();
+		GameGrid[9][0].setPosition(9,0);
+		GameGrid[9][0].setSize(1, 1);
+		
 		GameGrid[9][1] = new Plains();
+		GameGrid[9][1].setPosition(9,1);
+		GameGrid[9][1].setSize(1, 1);
+		
+		for(int z = 0; z < 10; z++) {
+			for(int x = 0; x < 10; x++) {
+				sprites[x][z] = GameGrid[x][z];
+				/*GameGrid[x][z].setPosition(x,z);
+				GameGrid[x][z].setSize(1, 1);*/
+			}
+		} 
 		
 		batch = new SpriteBatch();
 		cam = new OrthographicCamera(Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
@@ -112,11 +159,13 @@ public class LevelOne extends Level implements Screen,InputProcessor{
 		
 		for(int z = 0; z < 10; z++) {
 			for(int x = 0; x < 10; x++) {
+				sprites[x][z].setPosition(x, z);
+				sprites[x][z].setSize(1, 1);
 				sprites[x][z].draw(batch);
 			}
 		}
 		
-		for (int row = 0;row < GameGrid.length ;row++){
+		/*for (int row = 0;row < GameGrid.length ;row++){
 			for (int col = 0;col < GameGrid[0].length;col++){
 				GameGrid[row][col].setSize(64f, 64f);
 				GameGrid[row][col].draw(batch);
@@ -124,7 +173,7 @@ public class LevelOne extends Level implements Screen,InputProcessor{
 				GameGrid[row][col].setY(210+(64*col));
 				
 			}
-		}
+		}*/
 		batch.end();
 		checkTileTouched();
 
@@ -138,7 +187,7 @@ public class LevelOne extends Level implements Screen,InputProcessor{
 			int z = (int)intersection.z;
 			if(x >= 0 && x < 10 && z >= 0 && z < 10) {
 				if(lastSelectedTile != null) lastSelectedTile.setColor(1, 1, 1, 1);
-				Sprite sprite = sprites[x][z];
+				Tile sprite = GameGrid[x][z];
 				sprite.setColor(1, 0, 0, 1);
 				lastSelectedTile = sprite;
 			}
