@@ -1,10 +1,12 @@
 package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 
 
-public class Tile{
+public class Tile extends Sprite{
     
 	//tied image
 	
@@ -20,7 +22,7 @@ public class Tile{
     
     public Tile(String s){
     	level = 0;
-    	type = s; 
+    	this.set(new Sprite(new Texture("tiles/"+s+".png"))); 
     }
     
     //Skill: Reforest, turns plains into forests.

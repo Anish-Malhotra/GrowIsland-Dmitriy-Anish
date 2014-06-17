@@ -25,10 +25,10 @@ public class Splash implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		manager.update(delta);
 		batch.begin();
 		splash.draw(batch);
 		batch.end();
+		manager.update(delta);
 
 	}
 
