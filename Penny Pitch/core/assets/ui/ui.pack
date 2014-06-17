@@ -1,0 +1,37 @@
+
+ui.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+button-active
+  rotate: false
+  xy: 0, 0
+  size: 7, 11
+  split: 3, 3, 5, 5
+  orig: 7, 11
+  offset: 0, 0
+  index: -1
+button-hover
+  rotate: false
+  xy: 7, 0
+  size: 7, 11
+  split: 3, 3, 5, 5
+  orig: 7, 11
+  offset: 0, 0
+  index: -1
+button-idle
+  rotate: false
+  xy: 14, 0
+  size: 7, 11
+  split: 3, 3, 5, 5
+  orig: 7, 11
+  offset: 0, 0
+  index: -1
+textbox
+  rotate: false
+  xy: 21, 2
+  size: 9, 9
+  split: 4, 4, 4, 4
+  orig: 9, 9
+  offset: 0, 0
+  index: -1
