@@ -24,7 +24,7 @@ public class Disaster {
 	}
 	
 	Random r = new Random();
-	PriorityQueue<Disaster> queue = new PriorityQueue<Disaster>();
+	public static PriorityQueue<Disaster> queue = new PriorityQueue<Disaster>();
 	
 	public void Generate(){
 		queue.add(all[r.nextInt(all.length - 1)]);	

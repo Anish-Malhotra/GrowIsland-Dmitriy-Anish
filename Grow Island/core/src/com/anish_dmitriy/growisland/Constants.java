@@ -24,4 +24,8 @@ public class Constants {
 	public static int FACTORIES;
 	public static int SCHOOLS;
 	public static int TEMPLES;
+	
+	public static boolean CULTURED = false;
+	public static boolean WILDFIRED = false;
+	
 }

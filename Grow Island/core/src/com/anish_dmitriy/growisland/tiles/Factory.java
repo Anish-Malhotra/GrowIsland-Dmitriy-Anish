@@ -1,10 +1,10 @@
-package com.anish_dmitriy.growisland.building;
+package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
 
-public class Factory extends Building{
+public class Factory extends Plains implements Building{
 	public Factory(){
-		level = 1;
+		super();
 		Constants.PRODUCTIONs += 30; 
 		Constants.FACTORIES += 1;
 	}

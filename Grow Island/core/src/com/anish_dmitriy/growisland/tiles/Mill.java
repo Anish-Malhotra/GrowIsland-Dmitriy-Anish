@@ -1,10 +1,10 @@
-package com.anish_dmitriy.growisland.building;
+package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
 
-public class Mill extends Building{
+public class Mill extends Forest implements Building{
 	public Mill(){
-		level = 1;
+		super();
 		Constants.WOODs += 20;
 		Constants.MILLS += 1;
 	}

@@ -7,5 +7,9 @@ public class Forest extends Tile {
     public Forest(){
 	super("Forest");
     }
+    
+    public void Build(Mill m){
+    	super.Build(m);
+    }
 
 }

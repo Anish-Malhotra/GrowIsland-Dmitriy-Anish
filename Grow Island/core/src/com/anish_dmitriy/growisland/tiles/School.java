@@ -1,10 +1,10 @@
-package com.anish_dmitriy.growisland.building;
+package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
 
-public class School extends Building{
+public class School extends Plains implements Building{
 	public School(){
-		level = 1;
+		super();
 		Constants.KNOWLEDGEs += 30;
 		Constants.SCHOOLS += 1;
 	}

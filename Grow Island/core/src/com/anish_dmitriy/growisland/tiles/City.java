@@ -1,11 +1,11 @@
-package com.anish_dmitriy.growisland.building;
+package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
 
-public class City extends Building{
+public class City extends Plains implements Building{
 	
 	public City(){
-		level = 1;
+		super();
 		Constants.POPULATIONs = 3;
 		Constants.CITIES += 1;
 	}

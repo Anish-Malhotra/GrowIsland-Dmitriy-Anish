@@ -1,10 +1,10 @@
-package com.anish_dmitriy.growisland.building;
+package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
 
-public class Farm extends Building{
+public class Farm extends Plains implements Building{
 	public Farm(){
-		level = 1;
+		super();
 		Constants.FOODs += 20;
 		Constants.FARMS += 1;
 	}

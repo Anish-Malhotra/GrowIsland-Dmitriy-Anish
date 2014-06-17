@@ -2,7 +2,6 @@ package com.anish_dmitriy.growisland.levels;
 
 import com.anish_dmitriy.growisland.tiles.*;
 
-import java.io.*;
 import java.util.*;
 
 public class Level {
@@ -13,7 +12,7 @@ public class Level {
 	
 	
 	public Level(){
-		Tiles = new Tile[5];
+		Tiles = new Tile[6];
 		Tiles[0] = new Plains();
 		Tiles[1] = new Forest();
 		Tiles[2] = new Mountain();
@@ -21,10 +20,18 @@ public class Level {
 		Tiles[4] = new Desert();
 		Tiles[5] = new Plains();
 		
-		GameGrid = new Tile[8][8];
+		GameGrid = new Tile[10][10];
 	}
 		
 	public Level(int i){
+		Tiles = new Tile[6];
+		Tiles[0] = new Plains();
+		Tiles[1] = new Forest();
+		Tiles[2] = new Mountain();
+		Tiles[3] = new Water();
+		Tiles[4] = new Desert();
+		Tiles[5] = new Plains();
+		
 		GameGrid = new Tile[i][i];
 	}
 	

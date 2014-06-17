@@ -1,11 +1,11 @@
-package com.anish_dmitriy.growisland.building;
+package com.anish_dmitriy.growisland.tiles;
 
 import com.anish_dmitriy.growisland.Constants;
 
-public class Temple extends Building{
+public class Temple extends Water implements Building{
 	
 	public Temple(){
-		level = 1;
+		super();
 		Constants.MAGICs += 30;
 		Constants.TEMPLES += 1;
 	}

@@ -5,23 +5,35 @@ import com.anish_dmitriy.growisland.tiles.*;
 
 public class LevelOne extends Level{
 	public LevelOne(){
-			super(4);
+			super();
 	}
 	
 	public void Generate(){
-		GameGrid[0][0] = new Forest();
-		GameGrid[0][1] = new Forest();
-		GameGrid[0][2] = new Forest();
-		GameGrid[0][3] = new Forest();
-		GameGrid[1][3] = new Forest();
-		GameGrid[2][3] = new Forest();
-		GameGrid[3][3] = new Forest();
 		for (int row = 1;row < GameGrid.length - 1;row++){
-			for (int col = 0;col < GameGrid[0].length - 2;col++){
-				GameGrid[row][col] = new Plains();
+			for (int col = 0;col < GameGrid[0].length - 1;col++){
+				GameGrid[row][col] = new Transparent();
 			}
 		}
+		GameGrid[7][0] = new Forest();
+		GameGrid[7][1] = new Forest();
+		GameGrid[7][2] = new Forest();
+		GameGrid[7][3] = new Forest();
+		GameGrid[8][3] = new Forest();
+		GameGrid[9][3] = new Forest();
+		GameGrid[10][3] = new Forest();
+		GameGrid[8][0] = new Plains();
+		GameGrid[8][1] = new Plains();
+		GameGrid[8][2] = new Plains();
+		GameGrid[9][0] = new Plains();
+		GameGrid[9][1] = new Plains();
+		GameGrid[9][2] = new Plains();
+		GameGrid[10][0] = new Plains();
+		GameGrid[10][1] = new Plains();
+		GameGrid[10][2] = new Plains();
+		
+		
 	}
+	
 	
 	/*You have to add some objectives:
 	 * Build city level 1
