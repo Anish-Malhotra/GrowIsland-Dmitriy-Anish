@@ -1,6 +1,7 @@
 package com.anish_dmitriy.growisland.screens;
 
 import com.anish_dmitriy.growisland.levels.LevelOne;
+import com.anish_dmitriy.growisland.levels.TestLevelIso;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -60,7 +61,7 @@ public class LevelSelect implements Screen {
 		levelOne.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y) {
-				((Game) Gdx.app.getApplicationListener()).setScreen(new LevelOne());
+				((Game) Gdx.app.getApplicationListener()).setScreen(new TestLevelIso());
 			}
 		});
 		levelTwo = new TextButton("Level Two", skin);

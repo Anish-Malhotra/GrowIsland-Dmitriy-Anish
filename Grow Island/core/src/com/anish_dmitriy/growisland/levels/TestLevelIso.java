@@ -1,5 +1,6 @@
 package com.anish_dmitriy.growisland.levels;
 
+import com.anish_dmitriy.growisland.tiles.Desert;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -17,7 +18,7 @@ import com.badlogic.gdx.math.collision.Ray;
 
 public class TestLevelIso implements Screen,InputProcessor{
 
-	private Game game;
+	//private Game game;
 	private Texture texture;
 	Texture bg = new Texture("img/bg.png");
 	private OrthographicCamera cam;
@@ -29,9 +30,7 @@ public class TestLevelIso implements Screen,InputProcessor{
 	Sprite lastSelectedTile = null;
 	Sprite sprite = new Sprite(bg);
 	
-	public TestLevelIso(Game game) {
-		this.game = game;
-	}
+
 
 	@Override
 	public void render(float delta) {
@@ -40,6 +39,7 @@ public class TestLevelIso implements Screen,InputProcessor{
 		batch.setProjectionMatrix(cam.combined);
 		batch.setTransformMatrix(matrix);
 		batch.begin();
+		//batch.draw(background, 0, 0);
 		for(int z = 0; z < 10; z++) {
 			for(int x = 0; x < 10; x++) {
 				sprites[x][z].draw(batch);
@@ -56,9 +56,12 @@ public class TestLevelIso implements Screen,InputProcessor{
 
 	}
 
+	Texture background;
+	
 	@Override
 	public void show() {
-		texture = new Texture(Gdx.files.internal("img/corruptiontile.png"));
+		background  = new Texture("img/bg.png");
+		texture = new Texture(Gdx.files.internal("tiles/Transparent.png"));
 		cam = new OrthographicCamera(10, 10 * (Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));			
 		cam.position.set(10, 5, 10);
 		cam.direction.set(-1, -1, -1);
@@ -74,7 +77,10 @@ public class TestLevelIso implements Screen,InputProcessor{
 				sprites[x][z].setSize(1, 1);
 			}
 		}
- 
+		sprites[0][0] = new Desert();
+		sprites[0][0].setPosition(0,0);
+		sprites[0][0].setSize(1, 1);
+		
 		batch = new SpriteBatch();
  
 		Gdx.input.setInputProcessor(this);
