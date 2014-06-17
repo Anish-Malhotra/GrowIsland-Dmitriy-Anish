@@ -28,15 +28,28 @@ public class LevelOne extends Level implements Screen,InputProcessor{
 	final Vector3 intersection = new Vector3();
 	private final Matrix4 matrix = new Matrix4();
 	
-	
 	public LevelOne(){
 			super();
 	}
 	
 	@Override
 	public void show(){
-		background = new Texture("img/bg.png");
-		 
+				
+		cam = new OrthographicCamera(10, 10 * (Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));			
+		cam.position.set(10, 5, 10);
+		cam.direction.set(-1, -1, -1);
+		cam.near = 1;
+		cam.far = 100;
+		cam.zoom = 1.8f;
+		matrix.setToRotation(new Vector3(1, 0, 0), 90);
+ 
+		for(int z = 0; z < 10; z++) {
+			for(int x = 0; x < 10; x++) {
+				sprites[x][z] = new Sprite(texture);
+				sprites[x][z].setPosition(x,z);
+				sprites[x][z].setSize(1, 1);
+			}
+		} 
 		
 		for (int row = 0;row < GameGrid.length;row++){
 			for (int col = 0;col < GameGrid[0].length;col++){
@@ -91,8 +104,18 @@ public class LevelOne extends Level implements Screen,InputProcessor{
 	public void render(float delta) {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+		cam.update();		 
+		batch.setProjectionMatrix(cam.combined);
+		batch.setTransformMatrix(matrix);
+		
 		batch.begin();
-		batch.draw(background,0,0);
+		
+		for(int z = 0; z < 10; z++) {
+			for(int x = 0; x < 10; x++) {
+				sprites[x][z].draw(batch);
+			}
+		}
+		
 		for (int row = 0;row < GameGrid.length ;row++){
 			for (int col = 0;col < GameGrid[0].length;col++){
 				GameGrid[row][col].setSize(64f, 64f);
@@ -115,16 +138,15 @@ public class LevelOne extends Level implements Screen,InputProcessor{
 			int z = (int)intersection.z;
 			if(x >= 0 && x < 10 && z >= 0 && z < 10) {
 				if(lastSelectedTile != null) lastSelectedTile.setColor(1, 1, 1, 1);
-				Tile tile = GameGrid[x][z];
-				tile.setColor(1, 0, 0, 1);
-				lastSelectedTile = tile;
+				Sprite sprite = sprites[x][z];
+				sprite.setColor(1, 0, 0, 1);
+				lastSelectedTile = sprite;
 			}
 		}
 	}
 
 	@Override
 	public void resize(int width, int height) {
-		cam.update();
 	}
 
 	@Override

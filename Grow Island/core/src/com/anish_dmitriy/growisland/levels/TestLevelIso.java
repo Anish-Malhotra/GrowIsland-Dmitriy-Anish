@@ -1,7 +1,6 @@
 package com.anish_dmitriy.growisland.levels;
 
-import com.anish_dmitriy.growisland.tiles.Desert;
-import com.badlogic.gdx.Game;
+import com.anish_dmitriy.growisland.tiles.Forest;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
@@ -10,11 +9,17 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Plane;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.collision.Ray;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 public class TestLevelIso implements Screen,InputProcessor{
 
@@ -46,6 +51,8 @@ public class TestLevelIso implements Screen,InputProcessor{
 			}
 		}
 		batch.end();
+		stage.act(delta);
+		stage.draw();
  
 		checkTileTouched();
 	}
@@ -57,11 +64,29 @@ public class TestLevelIso implements Screen,InputProcessor{
 	}
 
 	Texture background;
+	private TextureRegion bgloader;
+	private TextureRegionDrawable drawer;
+	private Stage stage;
+	private TextureAtlas atlas;
+	private Skin skin;
+	private Table table;
 	
 	@Override
 	public void show() {
 		background  = new Texture("img/bg.png");
+		bgloader = new TextureRegion(background);
+		drawer = new TextureRegionDrawable(bgloader);
+		
+		stage = new Stage();
+		
+		Gdx.input.setInputProcessor(stage);
+		
+		atlas = new TextureAtlas(Gdx.files.internal("ui/button.pack"));
+		skin = new Skin(Gdx.files.internal("ui/menuSkin.json"),atlas);
 		texture = new Texture(Gdx.files.internal("tiles/Transparent.png"));
+		
+		table = new Table(skin);
+		
 		cam = new OrthographicCamera(10, 10 * (Gdx.graphics.getHeight() / (float)Gdx.graphics.getWidth()));			
 		cam.position.set(10, 5, 10);
 		cam.direction.set(-1, -1, -1);
@@ -77,11 +102,14 @@ public class TestLevelIso implements Screen,InputProcessor{
 				sprites[x][z].setSize(1, 1);
 			}
 		}
-		sprites[0][0] = new Desert();
+		sprites[0][0] = new Forest();
 		sprites[0][0].setPosition(0,0);
 		sprites[0][0].setSize(1, 1);
 		
 		batch = new SpriteBatch();
+		
+		table.setBackground(drawer);
+		stage.addActor(table);
  
 		Gdx.input.setInputProcessor(this);
 	}
